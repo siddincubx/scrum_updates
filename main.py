@@ -36,7 +36,7 @@ def create_app():
             logger.info(f"Processing scrum update for date: {current_date}")
             
             # Call the BAML function
-            result = b.Extract_scrum_update(input_data, current_date)
+            result = b.ExtractScrumUpdate(input_data, current_date)
             
             return templates.TemplateResponse("scrum_response.html", {
                 "request": request,
@@ -54,7 +54,7 @@ def create_app():
         """Original JSON API endpoint for backward compatibility"""
         try:
             current_date = datetime.now().strftime("%Y-%m-%d")
-            result = b.Extract_scrum_update(request.input_data, current_date)
+            result = b.ExtractScrumUpdate(request.input_data, current_date)
             return result
         except Exception as e:
             logger.error(f"Error in JSON API: {str(e)}")

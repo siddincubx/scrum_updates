@@ -24,10 +24,10 @@ class LlmResponseParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def Extract_scrum_update(
+    def ExtractScrumUpdate(
         self, llm_response: str, baml_options: BamlCallOptions = {},
     ) -> types.ScrumUpdate:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="Extract_scrum_update", llm_response=llm_response, mode="request")
+        result = self.__options.merge_options(baml_options).parse_response(function_name="ExtractScrumUpdate", llm_response=llm_response, mode="request")
         return typing.cast(types.ScrumUpdate, result)
 
     
@@ -38,10 +38,10 @@ class LlmStreamParser:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def Extract_scrum_update(
+    def ExtractScrumUpdate(
         self, llm_response: str, baml_options: BamlCallOptions = {},
     ) -> stream_types.ScrumUpdate:
-        result = self.__options.merge_options(baml_options).parse_response(function_name="Extract_scrum_update", llm_response=llm_response, mode="stream")
+        result = self.__options.merge_options(baml_options).parse_response(function_name="ExtractScrumUpdate", llm_response=llm_response, mode="stream")
         return typing.cast(stream_types.ScrumUpdate, result)
 
     

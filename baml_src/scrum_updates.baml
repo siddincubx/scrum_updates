@@ -12,7 +12,7 @@ class ScrumUpdate {
         Total duration of the scrum update in minutes."#)
 }
 
-function Extract_scrum_update(transcript: string, current_date: string) -> ScrumUpdate {
+function ExtractScrumUpdate(transcript: string, current_date: string) -> ScrumUpdate {
     client CustomGemini
     prompt #"
         Current date is {{ current_date }}. Use if date cannot be determined from transcript.
@@ -27,7 +27,7 @@ function Extract_scrum_update(transcript: string, current_date: string) -> Scrum
 }
 
 test sample_transcript_record{
-    functions [Extract_scrum_update]
+    functions [ExtractScrumUpdate]
     args{
         current_date "2024-06-15"
         transcript #"
@@ -62,8 +62,8 @@ Awesome, sounds like a plan. Great stuff, team. Let's have a good one!
     }
 }
 
-test negative_transcipt{
-    functions [Extract_scrum_update]
+test negative_transcript{
+    functions [ExtractScrumUpdate]
     args{
         current_date "2024-06-15"
         transcript #"David 10:14 AM
@@ -92,7 +92,7 @@ The data also shows rushed copy performs 40% worse in A/B tests."#
 
 
 test updates_from_email{
-    functions [Extract_scrum_update]
+    functions [ExtractScrumUpdate]
     args{
         current_date "2024-06-15"
         transcript #"

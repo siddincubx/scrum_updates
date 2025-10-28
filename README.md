@@ -14,6 +14,7 @@ An interactive web application that uses AI to extract structured information fr
 
 ### Prerequisites
 - Python 3.13+
+- [uv](https://docs.astral.sh/uv/) - Fast Python package installer and resolver
 - GEMINI_API_KEY environment variable
 
 ### Installation & Running
@@ -23,36 +24,24 @@ An interactive web application that uses AI to extract structured information fr
    cd scrum_updates
    ```
 
-2. **Set up environment**:
+2. **Install dependencies with uv**:
    ```bash
-   # Create virtual environment (if not already created)
-   python -m venv .venv
-   
-   # Activate virtual environment
-   .venv\Scripts\activate  # Windows
-   # or
-   source .venv/bin/activate  # Linux/Mac
+   # uv will automatically create a virtual environment and install dependencies
+   uv sync
    ```
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r pyproject.toml
-   # or manually:
-   pip install fastapi uvicorn jinja2 python-multipart baml-py python-dotenv
-   ```
-
-4. **Set up API key**:
+3. **Set up API key**:
    Create a `.env` file with your Gemini API key:
    ```
    GEMINI_API_KEY=your_api_key_here
    ```
 
-5. **Run the server**:
+4. **Run the server**:
    ```bash
-   python main.py
+   uv run main.py
    ```
 
-6. **Open in browser**:
+5. **Open in browser**:
    Navigate to: http://localhost:8000
 
 ## 🎯 How to Use
@@ -87,7 +76,6 @@ curl -X POST "http://localhost:8000/scrum-update" \
 
 - **FastAPI** - Web framework
 - **HTMX** - Frontend interactivity without JavaScript
-- **Jinja2** - Template engine
 - **BAML** - AI function orchestration
 - **Gemini AI** - Language model for extraction
 
@@ -114,7 +102,7 @@ scrum_updates/
 - Returns HTML fragments instead of full pages
 
 ### AI Processing
-- BAML function `Extract_scrum_update` processes input
+- BAML function `ExtractScrumUpdate` processes input
 - Extracts: date, summary, accomplishments, plans, sentiments, blockers, speakers, duration
 - Uses Gemini 2.0 Flash Lite model for fast processing
 

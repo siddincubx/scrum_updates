@@ -91,17 +91,17 @@ class BamlSyncClient:
     def parse_stream(self):
       return self.__llm_stream_parser
     
-    def Extract_scrum_update(self, transcript: str,current_date: str,
+    def ExtractScrumUpdate(self, transcript: str,current_date: str,
         baml_options: BamlCallOptions = {},
     ) -> types.ScrumUpdate:
         # Check if on_tick is provided
         if 'on_tick' in baml_options:
-            stream = self.stream.Extract_scrum_update(transcript=transcript,current_date=current_date,
+            stream = self.stream.ExtractScrumUpdate(transcript=transcript,current_date=current_date,
                 baml_options=baml_options)
             return stream.get_final_response()
         else:
             # Original non-streaming code
-            result = self.__options.merge_options(baml_options).call_function_sync(function_name="Extract_scrum_update", args={
+            result = self.__options.merge_options(baml_options).call_function_sync(function_name="ExtractScrumUpdate", args={
                 "transcript": transcript,"current_date": current_date,
             })
             return typing.cast(types.ScrumUpdate, result.cast_to(types, types, stream_types, False, __runtime__))
@@ -114,10 +114,10 @@ class BamlStreamClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def Extract_scrum_update(self, transcript: str,current_date: str,
+    def ExtractScrumUpdate(self, transcript: str,current_date: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.BamlSyncStream[stream_types.ScrumUpdate, types.ScrumUpdate]:
-        ctx, result = self.__options.merge_options(baml_options).create_sync_stream(function_name="Extract_scrum_update", args={
+        ctx, result = self.__options.merge_options(baml_options).create_sync_stream(function_name="ExtractScrumUpdate", args={
             "transcript": transcript,"current_date": current_date,
         })
         return baml_py.BamlSyncStream[stream_types.ScrumUpdate, types.ScrumUpdate](
@@ -134,10 +134,10 @@ class BamlHttpRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def Extract_scrum_update(self, transcript: str,current_date: str,
+    def ExtractScrumUpdate(self, transcript: str,current_date: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
-        result = self.__options.merge_options(baml_options).create_http_request_sync(function_name="Extract_scrum_update", args={
+        result = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ExtractScrumUpdate", args={
             "transcript": transcript,"current_date": current_date,
         }, mode="request")
         return result
@@ -149,10 +149,10 @@ class BamlHttpStreamRequestClient:
     def __init__(self, options: DoNotUseDirectlyCallManager):
         self.__options = options
 
-    def Extract_scrum_update(self, transcript: str,current_date: str,
+    def ExtractScrumUpdate(self, transcript: str,current_date: str,
         baml_options: BamlCallOptions = {},
     ) -> baml_py.baml_py.HTTPRequest:
-        result = self.__options.merge_options(baml_options).create_http_request_sync(function_name="Extract_scrum_update", args={
+        result = self.__options.merge_options(baml_options).create_http_request_sync(function_name="ExtractScrumUpdate", args={
             "transcript": transcript,"current_date": current_date,
         }, mode="stream")
         return result
