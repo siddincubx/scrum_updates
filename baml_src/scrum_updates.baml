@@ -8,7 +8,7 @@ class ScrumUpdate {
     speakers string[] @description(#"
         List of speakers who spoke in the scrum update.
     "#)
-    duration_minutes int @description(#"
+    duration_minutes int? @description(#"
         Total duration of the scrum update in minutes."#)
 }
 
@@ -174,6 +174,186 @@ To: Mark Chen m.chen@company.com; David Miller d.miller@company.com; Brenda Vale
 Date: Tue, Oct 28, 2025, 10:29 AM
 
 Speaking of quality, the data also shows that rushed copy performs 40% worse in A/B tests and leads to a 15% higher unsubscribe rate. Just something to keep in mind as we manage timelines.
+        "#
+    }
+}
+
+test large_email_scenario{
+    functions [ExtractScrumUpdate]
+    args{
+        current_date "2024-06-15"
+        transcript #"
+            Subject: Follow-up on Project Atlas Outreach Copy
+From: David Miller d.miller@company.com
+To: Mark Chen m.chen@company.com
+Cc: Brenda Valenti b.valenti@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 9:03 AM
+
+Hi Mark,
+
+Just checking in again on the final partner outreach copy for Project Atlas. The CRM scheduling was supposed to begin yesterday, and I've been holding off the automated warm-up sends until I receive your version.
+
+If it helps, you can send a partial draft—I mainly need the opening and closing sections first so we can get creative approval from Legal.
+
+Let me know what’s realistic by today.
+
+Thanks,
+David
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Mark Chen m.chen@company.com
+To: David Miller d.miller@company.com
+Cc: Brenda Valenti b.valenti@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 9:42 AM
+
+Morning,
+
+I’m finalizing the narrative part. The brief changed last Friday evening—again—and it impacted the tone completely. What I had aligned for an “innovative empathy-driven” message now needs to reflect “strategic assertiveness,” as Brenda mentioned after her call with the executive team.
+
+It’s not just rewriting sentences; it means rewriting the emotional intent of every paragraph. That takes time.
+
+I’ll aim to share a near-final version by late afternoon, but please note: the feedback loop has expanded far beyond marketing at this point.
+
+Regards,
+Mark
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Chloe Davis c.davis@company.com
+To: Mark Chen m.chen@company.com; David Miller d.miller@company.com; Brenda Valenti b.valenti@company.com
+Date: Tue, Oct 28, 2025, 10:05 AM
+
+I’ll add one thing: our engagement metrics show that highly assertive tones tend to drop open rates by 20–25% unless softened with context early in the message.
+
+So before leadership finalizes that “strategic assertiveness” direction, we should at least sanity-check it against data. Otherwise, we risk sabotaging ourselves before the campaign even launches.
+
+Best,
+Chloe
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Brenda Valenti b.valenti@company.com
+To: Chloe Davis c.davis@company.com; Mark Chen m.chen@company.com; David Miller d.miller@company.com
+Date: Tue, Oct 28, 2025, 10:26 AM
+
+Everyone,
+
+Appreciate the feedback. To be clear, the tone adjustment came directly from the CEO after his meeting with the Board. The push for assertiveness is not optional, but that doesn’t mean the message needs to sound robotic—Mark, please balance the tone so it remains engaging and credible.
+
+Chloe, I understand your analytics perspective, but sometimes brand direction needs to lead, not follow.
+
+Let’s align this afternoon at 4 PM. Mark, please come prepared with at least a working draft, even if it’s rough.
+
+– B
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: David Miller d.miller@company.com
+To: Brenda Valenti b.valenti@company.com; Mark Chen m.chen@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 11:12 AM
+
+Copy that. Once Mark’s draft is ready, I’ll need about half a day to align it with the deliverability track and update our CRM content blocks. If we miss today’s window, we’ll have to reschedule two downstream campaigns.
+
+That’s not the end of the world—but it will mean we lose the Q4 pilot slot with three of our partners (Hubknot, Inceptra, and Noventa).
+
+So just a heads-up.
+
+—David
+
+Subject: [Day 2] Re: Follow-up on Project Atlas Outreach Copy
+From: Mark Chen m.chen@company.com
+To: David Miller d.miller@company.com
+Cc: Brenda Valenti b.valenti@company.com; Chloe Davis c.davis@company.com
+Date: Wed, Oct 29, 2025, 8:47 AM
+
+Morning team,
+
+First off, apologies for the delay last night—I stayed late to adjust the narrative but couldn’t get the version through the review tool because Legal’s portal went down around 9 PM. I’ve now uploaded the DRAFT v4.2 into the shared folder. It reflects all recent tone requests.
+
+Before I finalize, I need clarity on two things:
+
+Brenda mentioned yesterday to “omit mention of pricing tiers,” yet Sarah from Sales pinged me privately asking to highlight them in paragraph three. I’m not sure which directive stands.
+
+The “voice of leadership” quotes that were supposed to come from Tom (VP Marketing) are still missing, and without them, the email reads as oddly vague.
+
+Please advise.
+
+Regards,
+Mark
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Brenda Valenti b.valenti@company.com
+To: Mark Chen m.chen@company.com; David Miller d.miller@company.com; Chloe Davis c.davis@company.com
+Date: Wed, Oct 29, 2025, 9:06 AM
+
+Mark,
+
+Appreciate the late-night effort. To answer your points:
+
+Ignore Sarah’s note for now. Those pricing tiers were flagged in yesterday’s leadership call as “premature disclosure.” We can revisit later once Legal gives the green light.
+
+I’ll ping Tom for his quotes—though if it’s blocking progress, please insert placeholders for now.
+
+And just FYI, the CEO asked for an updated timeline by end of day—so, yes, this needs to move.
+
+– B
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Chloe Davis c.davis@company.com
+To: Brenda Valenti b.valenti@company.com; Mark Chen m.chen@company.com; David Miller d.miller@company.com
+Date: Wed, Oct 29, 2025, 9:27 AM
+
+If placeholders are going in, just please flag them clearly—I’ve seen placeholder lines accidentally make it into live campaigns before. Remember the “Insert_quote_here” incident from February? Let’s not repeat that one.
+
+Also, I ran some test pairs on subject lines last night based on the draft tone—early feedback shows a dip in perceived warmth. Might be fixable with a friendlier sender name, like “Team Atlas” instead of “Atlas Marketing Division.” Small change, but worth testing.
+
+– Chloe
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: David Miller d.miller@company.com
+To: Chloe Davis c.davis@company.com; Mark Chen m.chen@company.com; Brenda Valenti b.valenti@company.com
+Date: Wed, Oct 29, 2025, 10:03 AM
+
+Thanks, Chloe, good catch. On that note, Mark—the headers in the draft look visually heavy in dark mode. Could we lighten the first section background? The black-on-navy combo reads as unclickable in most previews.
+
+If you’re editing this morning, I’d appreciate a quick ping when the next version is ready. I’m scheduling a test send for 2 PM with a dummy segment.
+
+– David
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Mark Chen m.chen@company.com
+To: David Miller d.miller@company.com; Chloe Davis c.davis@company.com; Brenda Valenti b.valenti@company.com
+Date: Wed, Oct 29, 2025, 11:41 AM
+
+Making revisions now.
+
+Also, just to point out—while everyone’s feedback is valid, combining four separate sets of tone opinions (“friendly yet assertive yet empathetic yet corporate”) into one message is not exactly what I’d call efficient copywriting workflow. I’ll do my best, but at this point the only consistent voice left is confusion.
+
+Uploading v4.3 within the hour.
+
+– Mark
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Brenda Valenti b.valenti@company.com
+To: Mark Chen m.chen@company.com; David Miller d.miller@company.com; Chloe Davis c.davis@company.com
+Date: Wed, Oct 29, 2025, 1:03 PM
+
+Understood, Mark—let’s not get lost in the semantics. Remember, every stakeholder wants the same thing: a message that resonates. You have the talent for this—please channel that instead of the frustration.
+
+And please join the 3:30 leadership sync; the CEO has now asked to “briefly review the email draft” on the call.
+
+– Brenda
+
+Subject: Re: Follow-up on Project Atlas Outreach Copy
+From: Mark Chen m.chen@company.com
+To: Brenda Valenti b.valenti@company.com; David Miller d.miller@company.com; Chloe Davis c.davis@company.com
+Date: Wed, Oct 29, 2025, 2:02 PM
+
+Understood. Uploading what will hopefully be the “final” draft shortly.
+
+Although given what happened last time someone said “final,” I’ll refrain from naming it that in the file.
+
+Regards,
+Mark
+
+
         "#
     }
 }

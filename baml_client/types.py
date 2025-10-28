@@ -52,7 +52,7 @@ class ScrumUpdate(BaseModel):
     sentiments: str
     blockers: str
     speakers: typing.List[str]
-    duration_minutes: int
+    duration_minutes: typing.Optional[int] = None
 
 # #########################################################################
 # Generated type aliases (0)
