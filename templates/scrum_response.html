@@ -1,0 +1,81 @@
+{% if error %}
+<div class="alert alert-error">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <div>
+        <h3 class="font-bold">Error</h3>
+        <div class="text-xs">{{ error }}</div>
+    </div>
+</div>
+{% else %}
+<div class="space-y-4">
+    <div class="stats shadow w-full">
+        <div class="stat">
+            <div class="stat-title">Date</div>
+            <div class="stat-value text-lg">{{ scrum_update.date }}</div>
+        </div>
+        <div class="stat">
+            <div class="stat-title">Duration</div>
+            <div class="stat-value text-lg">{{ scrum_update.duration_minutes }} min</div>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-primary">Summary</h3>
+            <p class="text-sm">{{ scrum_update.summary }}</p>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-success">Accomplishments</h3>
+            <p class="text-sm">{{ scrum_update.accomplishments }}</p>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-info">Plans</h3>
+            <p class="text-sm">{{ scrum_update.plans }}</p>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-accent">Sentiments</h3>
+            <p class="text-sm">{{ scrum_update.sentiments }}</p>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-warning">Blockers</h3>
+            <p class="text-sm">{{ scrum_update.blockers }}</p>
+        </div>
+    </div>
+
+    <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-secondary">Speakers</h3>
+            {% if scrum_update.speakers %}
+            <div class="flex flex-wrap gap-2">
+                {% for speaker in scrum_update.speakers %}
+                <div class="badge badge-outline">{{ speaker }}</div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-sm text-base-content/70">No speakers identified</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="divider"></div>
+    
+    <div class="text-center">
+        <div class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Processing complete! You can now enter another transcript in the left panel.</span>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,15 @@
+[project]
+name = "scrum-updates"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "baml-py>=0.211.2",
+    "dotenv>=0.9.9",
+    "fastapi>=0.120.1",
+    "jinja2>=3.1.2",
+    "pydantic>=2.12.3",
+    "python-multipart>=0.0.6",
+    "uvicorn>=0.38.0",
+]

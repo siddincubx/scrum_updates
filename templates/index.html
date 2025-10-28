@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrum Update Processor</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-base-200">
+    <div class="navbar bg-base-100 shadow-lg">
+        <div class="flex-1">
+            <h1 class="text-xl font-bold text-base-content p-4">Scrum Update Processor</h1>
+        </div>
+        <div class="flex-none gap-4">
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 4.5L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571-3m5.571 3 5.571 3M12 12.75l-2.25-1.5M12 12.75l2.25-1.5m-2.25-1.5v6.75" />
+                    </svg>
+                    Tech Stack
+                </div>
+                <div tabindex="0" class="dropdown-content card card-compact bg-base-100 text-base-content z-[1] w-80 p-4 shadow-2xl">
+                    <div class="card-body">
+                        <h3 class="card-title text-sm mb-3">Built with Modern Technologies</h3>
+                        <div class="space-y-3">
+                            <!-- FastAPI -->
+                            <a href="https://fastapi.tiangolo.com/" target="_blank" class="flex items-center gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
+                                <svg class="w-8 h-8 text-primary flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm-1.073 1.445h2.146L22 9.118v5.764l-8.927 7.673L4.146 14.882V9.118l8.781-7.673z"/>
+                                    <path d="M12 4.364L6.545 8.182v7.636L12 19.636l5.455-3.818V8.182L12 4.364zm0 2.909l3.273 2.164v4.126L12 15.727l-3.273-2.164V9.437L12 7.273z"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-sm">FastAPI</div>
+                                    <div class="text-xs opacity-70">Web framework</div>
+                                </div>
+                            </a>
+                            
+                            <!-- HTMX -->
+                            <a href="https://htmx.org/" target="_blank" class="flex items-center gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
+                                <svg class="w-8 h-8 text-accent flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9,22 9,12 15,12 15,22"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-sm">HTMX</div>
+                                    <div class="text-xs opacity-70">Frontend interactivity without JavaScript</div>
+                                </div>
+                            </a>
+                            
+                            <!-- BAML -->
+                            <a href="https://docs.boundaryml.com/" target="_blank" class="flex items-center gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
+                                <svg class="w-8 h-8 text-info flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-sm">BAML</div>
+                                    <div class="text-xs opacity-70">AI function orchestration</div>
+                                </div>
+                            </a>
+                            
+                            <!-- Gemini AI -->
+                            <a href="https://ai.google.dev/" target="_blank" class="flex items-center gap-3 p-2 rounded-lg hover:bg-base-200 transition-colors">
+                                <svg class="w-8 h-8 text-warning flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <div>
+                                    <div class="font-semibold text-sm">Gemini AI</div>
+                                    <div class="text-xs opacity-70">Language model for extraction</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="text-xs text-center opacity-60 mt-3 pt-3 border-t border-base-300">
+                            Click any technology to learn more
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 2.47a.75.75 0 0 1 1.06 0l4.72 4.72a.75.75 0 0 1 0 1.06l-4.72 4.72a.75.75 0 0 1-1.06-1.06L13.06 8.5H3.75a.75.75 0 0 1 0-1.5h9.31L9.53 3.47a.75.75 0 0 1 0-1.06Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.35a.75.75 0 0 1-.53-.22l-4.72-4.72a.75.75 0 0 1 1.06-1.06L11 18.69V9.75a.75.75 0 0 1 1.5 0v8.94l3.19-3.19a.75.75 0 1 1 1.06 1.06l-4.72 4.72a.75.75 0 0 1-.53.22Z" />
+                    </svg>
+                </div>
+                <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow-2xl">
+                    <li><a onclick="setTheme('cupcake')">Cupcake</a></li>
+                    <li><a onclick="setTheme('dark')">Dark</a></li>
+                    <li><a onclick="setTheme('corporate')">Corporate</a></li>
+                    <li><a onclick="setTheme('synthwave')">Synthwave</a></li>
+                    <li><a onclick="setTheme('retro')">Retro</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex h-[calc(100vh-4rem)] gap-4 p-4">
+        <!-- Left Panel -->
+        <div class="flex-1 card bg-base-100 shadow-xl">
+            <div class="card-body flex flex-col h-full">
+                <div class="alert alert-info mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <div>
+                        <h3 class="font-bold">How it works:</h3>
+                        <div class="text-sm">
+                            <p><span class="font-semibold">1.</span> Enter or paste your scrum meeting transcript, chat messages, or email thread</p>
+                            <p><span class="font-semibold">2.</span> Click "Process Scrum Update" to extract structured information using AI</p>
+                            <p><span class="font-semibold">3.</span> The response will appear in the right panel instantly (powered by HTMX)</p>
+                            <p><span class="font-semibold">4.</span> Use the "Load Samples" dropdown to see examples</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form hx-post="/process-scrum" hx-target="#response-container" hx-indicator="#loading" class="flex flex-col flex-1">
+                    <div class="form-control mb-4">
+                        <div class="label-text font-semibold">Enter your scrum transcript or meeting notes:</div>
+
+                        <label class="label flex space-between width=100" for="transcript">
+                            <div class="card-actions mb-4">
+                                <button type="submit" class="btn btn-primary btn-wide">Process Scrum Update</button>
+                            </div>
+                            <div class="join">
+                                <button type="button" class="btn btn-sm btn-outline join-item mb-4" onclick="loadSampleData('positive')">Positive Meeting</button>
+                                <button type="button" class="btn btn-sm btn-outline join-item mb-4" onclick="loadSampleData('negative')">Negative Meeting</button>
+                                <button type="button" class="btn btn-sm btn-outline join-item mb-4" onclick="loadSampleData('email')">Email Thread</button>
+                            </div>
+                            
+                        </label>
+                    </div>
+                    
+                    
+                    <div class="form-control flex-1">
+                        <textarea 
+                            id="transcript" 
+                            name="input_data" 
+                            class="textarea textarea-bordered w-full h-full resize-none"
+                            placeholder="Paste your scrum meeting transcript, Slack/Teams chat messages, email thread, or any meeting notes here...
+
+Example formats:
+- Meeting transcript with timestamps
+- Slack/Teams conversation
+- Email thread
+- Bullet-point notes
+
+The AI will extract: date, summary, accomplishments, plans, sentiments, blockers, speakers, and duration."
+                            required></textarea>
+                    </div>
+                </form>
+                
+                <div id="loading" class="htmx-indicator flex items-center justify-center py-4">
+                    <span class="loading loading-spinner loading-md"></span>
+                    <span class="ml-2">Processing your scrum update with AI...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel -->
+        <div class="flex-1 card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <div class="flex justify-between items-center border-b border-base-300 pb-4 mb-4">
+                    <h2 class="card-title text-base-content">Scrum Update Report</h2>
+                    <button id="download-btn" class="btn btn-sm btn-ghost hidden" onclick="downloadReport()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        Download Report
+                    </button>
+                </div>
+                <div id="response-container" class="overflow-y-auto flex-1">
+                    <div class="hero">
+                        <div class="hero-content text-center">
+                            <div class="max-w-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto text-base-content opacity-50 mb-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c-.621 0-1.125.504-1.125 1.125V11.25a9 9 0 00-9-9z" />
+                                </svg>
+                                <p class="text-base-content opacity-70">Process a transcript to see the extracted scrum update information here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadSampleData(type) {
+            let sampleData = '';
+            
+            if (type === 'positive') {
+                sampleData = `Priya 9:30 AM
+Morning folks, let's do a quick sync. How's everyone doing?
+
+Raj 9:31 AM
+Hey all. I wrapped up the backend logic for the payment gateway yesterday, and all the tests look good. Today I'm planning to jump on the API for pulling transaction history. So far, so good on my end.
+
+Anjali 9:33 AM
+Morning. I'm still wrestling with the user profile page. That new component just refuses to play nice on mobile. I'm going to keep poking at it today, but honestly, I'm a bit stuck. The CSS is being a real pain.
+
+Samir 9:34 AM
+Good morning. My test plan for the payment gateway is all done. I'm ready to start hammering it as soon as the feature is on the QA server. Just waiting on that build.
+
+Priya 9:36 AM
+Nice one, Raj! How soon do you think you can get that build over to Samir? Anjali, no worries, that responsive stuff can be tricky. Raj, any chance you could lend her a hand with that CSS later? I know you're busy, but we need to show the new profile page to Sarah from the marketing team by Thursday.
+
+Raj 9:38 AM
+Yeah, for sure. @Priya, I can push the build to QA now, it should be ready for @Samir in about 30 minutes. @Anjali, happy to help. I'll send you a calendar invite for 11 AM, and we can screenshare.
+
+Anjali 9:39 AM
+Thanks so much, Raj, that would be amazing! 11 AM works perfectly.
+
+Samir 9:40 AM
+Sweet, thanks Raj. I'll keep an eye out for it.
+
+Priya 9:41 AM
+Awesome, sounds like a plan. Great stuff, team. Let's have a good one!`;
+            } else if (type === 'negative') {
+                sampleData = `David 10:14 AM
+Just following up on my email from yesterday. Do we have an ETA for the final copy for the partner outreach sequence? The deadline was EOD yesterday.
+
+Chloe 10:16 AM
+The analytics from the Q3 campaign suggest that sequences sent out on Wednesdays have a significantly lower open rate. Just putting that out there since we're already behind.
+
+Mark 10:20 AM
+I'm working on it. I had to pivot after our "strategy alignment" call because the initial direction was apparently not what we wanted, despite it being in the approved creative brief.
+
+Brenda 10:22 AM
+Okay, let's keep the discussion focused on a path forward. Mark, I understand the frustration, but we need to be agile. David needs that copy to start his workflow.
+
+David 10:25 AM
+Exactly. My hands are tied until I get it. The partners are expecting to hear from us this week, and I'd prefer not to have to explain another delay to them.
+
+Mark 10:28 AM
+I'll get it to you when it's done. It's hard to maintain quality when the goalposts are moved every six hours.
+
+Chloe 10:29 AM
+The data also shows rushed copy performs 40% worse in A/B tests.`;
+            } else if (type === 'email') {
+                sampleData = `Subject: Follow up on Project Atlas copy
+From: David Miller d.miller@company.com
+To: Mark Chen m.chen@company.com
+Cc: Brenda Valenti b.valenti@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 10:14 AM
+
+Hi Mark,
+
+Just wanted to circle back on the final copy for the Project Atlas partner outreach sequence. The deadline was EOD yesterday, and I need it to begin prepping the mail merge and scheduling the sends.
+
+Do you have an updated ETA for me?
+
+Thanks,
+David
+
+Subject: Re: Follow up on Project Atlas copy
+From: Chloe Davis c.davis@company.com
+To: David Miller d.miller@company.com; Mark Chen m.chen@company.com
+Cc: Brenda Valenti b.valenti@company.com
+Date: Tue, Oct 28, 2025, 10:16 AM
+
+Just a thought on this – as we move into midweek, it might be relevant to note that the analytics from the Q3 campaign suggest that sequences sent out on Wednesdays have a significantly lower open rate compared to Tuesdays.
+
+Just putting that out there since we're already behind schedule.
+
+Best,
+Chloe
+
+Subject: Re: Follow up on Project Atlas copy
+From: Mark Chen m.chen@company.com
+To: Chloe Davis c.davis@company.com; David Miller d.miller@company.com
+Cc: Brenda Valenti b.valenti@company.com
+Date: Tue, Oct 28, 2025, 10:20 AM
+
+I am actively working on it.
+
+As I'm sure we all remember from our "strategy alignment" call on Monday, the initial direction was apparently not what was wanted, despite that direction being explicitly signed-off on in the approved creative brief. I had to pivot and effectively restart the entire sequence from scratch yesterday afternoon.
+
+Subject: Re: Follow up on Project Atlas copy
+From: Brenda Valenti b.valenti@company.com
+To: Mark Chen m.chen@company.com; Chloe Davis c.davis@company.com; David Miller d.miller@company.com
+Date: Tue, Oct 28, 2025, 10:22 AM
+
+Team,
+
+Let's keep the discussion focused on a path forward.
+
+Mark, I understand the frustration with the pivot, but our ability to remain agile is key to this project's success. Thank you for adapting so quickly.
+
+David is blocked and needs that copy to start his workflow. Can you provide a realistic ETA for when he can expect a draft?
+
+Thanks,
+Brenda
+
+Subject: Re: Follow up on Project Atlas copy
+From: David Miller d.miller@company.com
+To: Brenda Valenti b.valenti@company.com; Mark Chen m.chen@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 10:25 AM
+
+Exactly. I appreciate the need to be agile, but my hands are completely tied until I get the copy.
+
+These partners are expecting to hear from us this week as per the timeline we communicated. I'd prefer not to have to send another "we'll be in touch soon" email and explain yet another delay. It undermines our credibility.
+
+Subject: Re: Follow up on Project Atlas copy
+From: Mark Chen m.chen@company.com
+To: David Miller d.miller@company.com; Brenda Valenti b.valenti@company.com; Chloe Davis c.davis@company.com
+Date: Tue, Oct 28, 2025, 10:28 AM
+
+I'll get it to you when it's done.
+
+It is difficult to maintain a high standard of quality when the goalposts are moved every six hours. I am doing my best to incorporate the new "vision" while ensuring the messaging doesn't sound completely disjointed. I should have something for you this afternoon, but it will be a rush job. It's easy to just hit 'send,' but crafting a message that resonates actually takes thought.
+
+Subject: Re: Follow up on Project Atlas copy
+From: Chloe Davis c.davis@company.com
+To: Mark Chen m.chen@company.com; David Miller d.miller@company.com; Brenda Valenti b.valenti@company.com
+Date: Tue, Oct 28, 2025, 10:29 AM
+
+Speaking of quality, the data also shows that rushed copy performs 40% worse in A/B tests and leads to a 15% higher unsubscribe rate. Just something to keep in mind as we manage timelines.`;
+            }
+            
+            // Set the textarea value
+            document.getElementById('transcript').value = sampleData;
+        }
+        
+        let currentReportData = null;
+        
+        function downloadReport() {
+            if (!currentReportData) return;
+            
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+            const filename = `scrum-update-report-${timestamp}.txt`;
+            
+            let reportContent = `SCRUM UPDATE REPORT
+Generated on: ${new Date().toLocaleString()}
+${'='.repeat(50)}
+
+DATE: ${currentReportData.date}
+DURATION: ${currentReportData.duration_minutes} minutes
+
+SUMMARY:
+${currentReportData.summary}
+
+ACCOMPLISHMENTS:
+${currentReportData.accomplishments}
+
+PLANS:
+${currentReportData.plans}
+
+SENTIMENTS:
+${currentReportData.sentiments}
+
+BLOCKERS:
+${currentReportData.blockers}
+
+SPEAKERS:
+${currentReportData.speakers ? currentReportData.speakers.join(', ') : 'No speakers identified'}
+
+${'='.repeat(50)}
+Generated by Scrum Update Processor
+`;
+            
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Listen for HTMX after-swap event to show download button and store data
+        document.body.addEventListener('htmx:afterSwap', function(evt) {
+            if (evt.detail.target.id === 'response-container') {
+                // Extract data from the response for download
+                const responseContainer = evt.detail.target;
+                const statsElements = responseContainer.querySelectorAll('.stat-value');
+                
+                if (statsElements.length > 0 && !responseContainer.querySelector('.alert-error')) {
+                    // Show download button
+                    document.getElementById('download-btn').classList.remove('hidden');
+                    document.getElementById('download-btn').classList.add('flex');
+                    
+                    // Extract and store report data
+                    currentReportData = {
+                        date: statsElements[0]?.textContent || '',
+                        duration_minutes: statsElements[1]?.textContent?.replace(' min', '') || '',
+                        summary: '',
+                        accomplishments: '',
+                        plans: '',
+                        sentiments: '',
+                        blockers: '',
+                        speakers: []
+                    };
+                    
+                    // Extract text content from cards
+                    const cards = responseContainer.querySelectorAll('.card-body');
+                    cards.forEach(card => {
+                        const title = card.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+                        const content = card.querySelector('p')?.textContent || '';
+                        
+                        if (title.includes('summary')) currentReportData.summary = content;
+                        else if (title.includes('accomplishments')) currentReportData.accomplishments = content;
+                        else if (title.includes('plans')) currentReportData.plans = content;
+                        else if (title.includes('sentiments')) currentReportData.sentiments = content;
+                        else if (title.includes('blockers')) currentReportData.blockers = content;
+                        else if (title.includes('speakers')) {
+                            const speakerBadges = card.querySelectorAll('.badge');
+                            currentReportData.speakers = Array.from(speakerBadges).map(badge => badge.textContent);
+                        }
+                    });
+                } else {
+                    // Hide download button if there's an error
+                    document.getElementById('download-btn').classList.add('hidden');
+                    document.getElementById('download-btn').classList.remove('flex');
+                    currentReportData = null;
+                }
+            }
+        });
+        
+        // Theme switching function
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+        
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'cupcake';
+            setTheme(savedTheme);
+        });
+    </script>
+</body>
+</html>
